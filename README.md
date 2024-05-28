@@ -28,40 +28,41 @@ Simply run the following command to get started
 ./pswd-cli
 ```
 
-- Adding a Password:
+### Adding a Password:
     To add a new password record, use the `add` command:
 ```bash
 ./pswd-cli add --service "serviceName" --username "yourUsername" --password "yourPassword"
 ```
 
-- Retieving a Password:
+### Retrieving a Password:
 To retrieve certain stored password records, use the `get` command.
 
-1. To retrieve all stored passwords for a certain service:
+- To retrieve all stored passwords for a certain service:
 ```bash
 ./pswd-cli get --service "serviceName"
 ```
 
-2. To retrieve the stored password for a certain username registered for a specific service:
+- To retrieve the stored password for a certain username registered for a specific service:
 ```bash
 ./pswd-cli get --service "serviceName" --username "yourUsername"
 ```
 
-- Updating a Password
+### Updating a Password
+
 To update an exising password record by replacing the stored password for a certain username registered for a specific service, use the `update` command.
 ```bash
 ./pswd-cli update --service "serviceName" --username "yourUsername" --newPassword "newPassword"
 ```
 
-- Deleting a Password
-To add a new password record, use the `delete` command.
+### Deleting a Password
 
-1. To either delete all stored passwords for a certain service:
+To add a new password record, use the `delete` command.
+- To either delete all stored passwords for a certain service:
 ```bash
 ./pswd-cli delete --service "serviceName"
 ```
 
-2. To delete a password entry for a certain username registered for a specific service:
+- To delete a password entry for a certain username registered for a specific service:
 ```bash
 ./pswd-cli delete --service "serviceName" --username "yourUsername"
 ```
