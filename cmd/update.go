@@ -25,5 +25,7 @@ var UpdateCmd = &cobra.Command{
 			fmt.Println("Error updating password")
 			return
 		}
+
+		db.CloseDB()
 	},
 }

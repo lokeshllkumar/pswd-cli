@@ -32,5 +32,7 @@ var AddCmd = &cobra.Command {
 			fmt.Println("Error adding password: ", err)
 			return
 		}
+
+		db.CloseDB()
 	},
 }

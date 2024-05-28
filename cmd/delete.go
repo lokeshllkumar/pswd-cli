@@ -25,6 +25,8 @@ var DeleteCmd = &cobra.Command {
 				fmt.Println("Error deleting corresponding entry")
 				return
 			}
+
+			db.CloseDB()
 		} else if len(args) == 1 {
 			service, _ := cmd.Flags().GetString("service")
 
@@ -38,6 +40,8 @@ var DeleteCmd = &cobra.Command {
 				fmt.Println("Error deleting corresponding entry/entries")
 				return
 			}
+
+			db.CloseDB()
 		} else {
 			fmt.Println("Error, invalid number of arguments provided")
 			return
