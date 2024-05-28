@@ -30,7 +30,7 @@ Simply run the following command to get started
 
 ### Adding a Password
 
-To add a new password record, use the `add` command:
+To add a new password record, use the `add` command.
 ```bash
 ./pswd-cli add --service "serviceName" --username "yourUsername" --password "yourPassword"
 ```
