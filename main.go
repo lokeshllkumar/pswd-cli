@@ -11,12 +11,12 @@ import (
 func main() {
 	rootCmd := &cobra.Command{
 		Use:   "pswd-cli",
-		Short: "A CLI password managing service",
+		Short: "A CLI password managing tool",
 	}
 
 	rootCmd.AddCommand(cmd.AddCmd)
 	rootCmd.AddCommand(cmd.GetCmd)
-	rootCmd.AddCommand(cmd.DisplayCmd)
+	rootCmd.AddCommand(cmd.ListCmd)
 	rootCmd.AddCommand(cmd.UpdateCmd)
 	rootCmd.AddCommand(cmd.DeleteCmd)
 
