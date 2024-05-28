@@ -9,10 +9,8 @@ import (
 	"io"
 )
 
-var key = []byte("f3b1e1b4a91a8f4e0b1c2d1e3f8b9a7c6d5e4f2a9b1c3d4e0a1b2c3d4e5f6a7")
-
 func EncryptPassword(password string) (string, error) {
-	block, err := aes.NewCipher(key)
+	block, err := aes.NewCipher(Key)
 	if err != nil {
 		return "", err
 	}
@@ -37,7 +35,7 @@ func DecryptPassword(encPassword string) (string, error) {
 		return "", err
 	}
 
-	block, err := aes.NewCipher(key)
+	block, err := aes.NewCipher(Key)
 	if err != nil {
 		return "", err
 	}
