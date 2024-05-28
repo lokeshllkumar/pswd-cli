@@ -74,7 +74,7 @@ func (db *DB) ListPasswords() (string, error) {
 			return "", err
 		}
 
-		record.TimeOfCreation, err = time.Parse("2006-02-03 14:04:08", creationTime)
+		record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
 		if err != nil {
 			fmt.Println("Error, could not parse data storing time of entry")
 			return "", err
