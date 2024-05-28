@@ -2,7 +2,7 @@ package models
 
 import (
 	"encoding/json"
-	"fmt"
+	_ "fmt"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -40,11 +40,52 @@ func (db *DB) GetPassword(service string, username string) (string, error) {
 			return "", err
 		}
 
-		record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
-		if err != nil {
-			fmt.Println("Error, could not parse data storing time of entry")
+		/*
+			record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
+			if err != nil {
+				fmt.Println("Error, could not parse data storing time of entry")
+				return "", err
+			}
+
+		*/
+
+		res = append(res, record)
+	}
+
+	jsonRes, err := json.Marshal(res)
+	if err != nil {
+		return "", err
+	}
+
+	return string(jsonRes), nil
+}
+
+func (db *DB) GetPasswords(service string) (string, error) {
+	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords WHERE service = ?;`
+	rows, err := db.Conn.Query(getQuery, service)
+	if err != nil {
+		return "", err
+	}
+	defer rows.Close()
+
+	var res []PasswordEntry
+
+	for rows.Next() {
+		var record PasswordEntry
+		var creationTime string
+
+		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
 			return "", err
 		}
+
+		/*
+			record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
+			if err != nil {
+				fmt.Println("Error, could not parse data storing time of entry")
+				return "", err
+			}
+
+		*/
 
 		res = append(res, record)
 	}
@@ -74,11 +115,13 @@ func (db *DB) ListPasswords() (string, error) {
 			return "", err
 		}
 
-		record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
-		if err != nil {
-			fmt.Println("Error, could not parse data storing time of entry")
-			return "", err
-		}
+		/*
+			record.TimeOfCreation, err = time.Parse("2006-01-02 15:04:08", creationTime)
+			if err != nil {
+				fmt.Println("Error, could not parse data storing time of entry")
+				return "", err
+			}
+		*/
 
 		res = append(res, record)
 	}

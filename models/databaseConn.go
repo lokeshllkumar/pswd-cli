@@ -19,7 +19,11 @@ func InitDB() (*DB, error){
 		return nil, err
 	}
 
-	return &DB{Conn: db}, nil
+	dbObj := DB{Conn: db}
+
+	dbObj.CreateTable()
+
+	return &dbObj, nil
 }
 
 func (db *DB) CloseDB() error {
