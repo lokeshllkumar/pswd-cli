@@ -2,17 +2,18 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 type PasswordEntry struct {
-	ID             int
-	Service        string
-	Username       string
-	Password       string
-	TimeOfCreation time.Time
+	ID             int       `json:"id"`
+	Service        string    `json:"service"`
+	Username       string    `json:"username"`
+	Password       string    `json:"password"`
+	TimeOfCreation time.Time `json:"createdAt"`
 }
 
 func (db *DB) AddPassword(service string, username string, encPassword string) error {
@@ -22,19 +23,29 @@ func (db *DB) AddPassword(service string, username string, encPassword string) e
 }
 
 func (db *DB) GetPassword(service string, username string) (string, error) {
-	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords WHERE service = ?;`
-	rows, err := db.Conn.Query(getQuery, service)
+	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords WHERE service = ? AND username = ?;`
+	rows, err := db.Conn.Query(getQuery, service, username)
 	if err != nil {
 		return "", err
 	}
 	defer rows.Close()
 
 	var res []PasswordEntry
+
 	for rows.Next() {
 		var record PasswordEntry
-		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &record.TimeOfCreation); err != nil {
+		var creationTime string
+
+		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
 			return "", err
 		}
+
+		record.TimeOfCreation, err = time.Parse("2006-02-03 14:04:08", creationTime)
+		if err != nil {
+			fmt.Println("Error, could not parse data storing time of entry")
+			return "", err
+		}
+
 		res = append(res, record)
 	}
 
@@ -46,9 +57,9 @@ func (db *DB) GetPassword(service string, username string) (string, error) {
 	return string(jsonRes), nil
 }
 
-func (db *DB) DisplayPasswords(service string, username string) (string, error) {
+func (db *DB) ListPasswords() (string, error) {
 	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords;`
-	rows, err := db.Conn.Query(getQuery, service)
+	rows, err := db.Conn.Query(getQuery)
 	if err != nil {
 		return "", err
 	}
@@ -57,9 +68,18 @@ func (db *DB) DisplayPasswords(service string, username string) (string, error) 
 	var res []PasswordEntry
 	for rows.Next() {
 		var record PasswordEntry
-		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &record.TimeOfCreation); err != nil {
+		var creationTime string
+
+		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
 			return "", err
 		}
+
+		record.TimeOfCreation, err = time.Parse("2006-02-03 14:04:08", creationTime)
+		if err != nil {
+			fmt.Println("Error, could not parse data storing time of entry")
+			return "", err
+		}
+
 		res = append(res, record)
 	}
 
