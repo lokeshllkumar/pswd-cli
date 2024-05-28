@@ -28,13 +28,15 @@ Simply run the following command to get started
 ./pswd-cli
 ```
 
-### Adding a Password:
-    To add a new password record, use the `add` command:
+### Adding a Password
+
+To add a new password record, use the `add` command:
 ```bash
 ./pswd-cli add --service "serviceName" --username "yourUsername" --password "yourPassword"
 ```
 
-### Retrieving a Password:
+### Retrieving a Password
+
 To retrieve certain stored password records, use the `get` command.
 
 - To retrieve all stored passwords for a certain service:
