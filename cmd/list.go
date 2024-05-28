@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"time"
+	_"time"
 
 	"encoding/json"
 
@@ -13,12 +13,13 @@ import (
 )
 
 var ListCmd = &cobra.Command{
-	Use:   "List",
+	Use:   "list",
 	Short: "The 'list' subcommand will display all stored password records that exist in the database",
 	Run: func(cmd *cobra.Command, args []string) {
+
 		db, err := models.InitDB()
 		if err != nil {
-			fmt.Println("Error, database connection failed")
+			fmt.Printf("Error, database connection failed: %v", err)
 			return
 		}
 
@@ -40,7 +41,7 @@ var ListCmd = &cobra.Command{
 				continue
 			}
 
-			fmt.Printf("Service: %s |\tUsername: %s |\tPassword: %s |\tCreated At: %s\n", record.Service, record.Username, decryptedPassword, record.TimeOfCreation.Format(time.RFC3339))
+			fmt.Printf("Service: %s |\tUsername: %s |\tPassword: %s\n", record.Service, record.Username, decryptedPassword)
 		}
 
 		db.CloseDB()

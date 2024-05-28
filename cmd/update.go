@@ -8,7 +8,7 @@ import (
 )
 
 var UpdateCmd = &cobra.Command{
-	Use:   "Update",
+	Use:   "update",
 	Short: "The 'update' subcommand updates the stored password for a username for a specific service",
 	Run: func(cmd *cobra.Command, args []string) {
 		service, _ := cmd.Flags().GetString("service")

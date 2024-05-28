@@ -8,8 +8,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var AddCmd = &cobra.Command {
-	Use:   "Add",
+var AddCmd = &cobra.Command{
+	Use:   "add",
 	Short: "The 'add' subcommand will add a new username: password pair for a specific service to the database",
 	Run: func(cmd *cobra.Command, args []string) {
 		service, _ := cmd.Flags().GetString("service")
@@ -36,3 +36,4 @@ var AddCmd = &cobra.Command {
 		db.CloseDB()
 	},
 }
+

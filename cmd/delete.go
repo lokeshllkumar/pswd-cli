@@ -8,10 +8,10 @@ import (
 )
 
 var DeleteCmd = &cobra.Command {
-	Use:   "Delete",
+	Use:   "delete",
 	Short: "The 'delete' subcommand will delete an existing username: password pair for a specific service or all exisiting entries for a service",
 	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 2 {
+		if len(args) > 1 {
 			service, _ := cmd.Flags().GetString("service")
 			username, _ := cmd.Flags().GetString("username")
 
@@ -27,7 +27,7 @@ var DeleteCmd = &cobra.Command {
 			}
 
 			db.CloseDB()
-		} else if len(args) == 1 {
+		} else {
 			service, _ := cmd.Flags().GetString("service")
 
 			db, err := models.InitDB()
@@ -42,9 +42,6 @@ var DeleteCmd = &cobra.Command {
 			}
 
 			db.CloseDB()
-		} else {
-			fmt.Println("Error, invalid number of arguments provided")
-			return
 		}
 	},
 }
