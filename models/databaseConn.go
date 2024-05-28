@@ -10,7 +10,7 @@ type DB struct {
 }
 
 func InitDB() (*DB, error){
-	db, err := sql.Open("sqlite3", "./pswd_local.db")
+	db, err := sql.Open("sqlite3", "./pswd_cli_local.db")
 	if err != nil {
 		return nil, err
 	}
