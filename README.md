@@ -4,9 +4,9 @@
 
 ## Features
 
-- Secure Password Storage: Passwords are encrypted using AES-GCM(Advanced Encryption Mode in Galois/Counter Mode) encryption before storage in the database, ensuring their security.
+- Secure Password Storage - Passwords are encrypted using AES-GCM(Advanced Encryption Mode in Galois/Counter Mode) encryption before storage in the database, ensuring their security.
 
-- Easy-to-use CLI Interface: Features a command-line itnerface with clear commands and flags to add, retrieving, updating, and deleting passwords.
+- Easy-to-use CLI Interface - Features a command-line itnerface with clear commands and flags to add, retrieving, updating, and deleting passwords.
 
 - Cross-Platform Support - The tool is compatible with various operating systems, including Linux, Windows, macOS.
 
@@ -28,19 +28,21 @@ Simply run the following command to get started
 ./pswd-cli
 ```
 
-- Adding a Password
-To add a new password record, use the `add` command:
+- Adding a Password:
+    To add a new password record, use the `add` command:
 ```bash
 ./pswd-cli add --service "serviceName" --username "yourUsername" --password "yourPassword"
 ```
 
-- Retieving a Password
-To retrieve certain stored password records, use the `get` command. There are 2 
-    - To retrieve all stored passwords for a certain service:
+- Retieving a Password:
+To retrieve certain stored password records, use the `get` command.
+
+1. To retrieve all stored passwords for a certain service:
 ```bash
 ./pswd-cli get --service "serviceName"
 ```
-    - To retrieve the stored password for a certain username registered for a specific service:
+
+2. To retrieve the stored password for a certain username registered for a specific service:
 ```bash
 ./pswd-cli get --service "serviceName" --username "yourUsername"
 ```
@@ -53,11 +55,13 @@ To update an exising password record by replacing the stored password for a cert
 
 - Deleting a Password
 To add a new password record, use the `delete` command.
-    - To either delete all stored passwords for a certain service:
+
+1. To either delete all stored passwords for a certain service:
 ```bash
 ./pswd-cli delete --service "serviceName"
 ```
-    - To delete a password entry for a certain username registered for a specific service:
+
+2. To delete a password entry for a certain username registered for a specific service:
 ```bash
 ./pswd-cli delete --service "serviceName" --username "yourUsername"
 ```
