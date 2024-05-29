@@ -10,7 +10,7 @@
 
 - Cross-Platform Support - The tool is compatible with various operating systems, including Linux, Windows, macOS.
 
-- SQLite Database - A locally configured SQLite databse is used for storing password records, ensuring fast and reliable access to your passwords.
+- SQLite Database - A locally configured SQLite database is used for storing password records, ensuring fast and reliable access to your passwords.
 
 ## Installation
 
@@ -71,6 +71,6 @@ To add a new password record, use the `delete` command.
 
 ## Additional Features
 
-- The `utils` directory also features methods to compute the hash of passwords and perform hash checks, to perform integrity checks whiel fetching data.
+- The `utils` directory also features methods to compute the hash of passwords and perform hash checks, to perform integrity checks while fetching data.
 - The `utils` directory also includes a method to generate new 32-bit AES encryption keys.
 - The table containing password records also stores the time fo creating of records for auditing purposes.
