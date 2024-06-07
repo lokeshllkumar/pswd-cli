@@ -21,7 +21,7 @@ func KeyWrite() {
 		fmt.Println("Error generating key")
 		return
 	}
-	err = ioutil.WriteFile("key.txt", key, 0666)
+	err = ioutil.WriteFile("./utils/key.txt", key, 0666)
 	if err != nil {
 		fmt.Println("Error writing key to stored file")
 	}
