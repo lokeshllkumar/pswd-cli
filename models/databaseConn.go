@@ -2,6 +2,8 @@ package models
 
 import (
 	"database/sql"
+	"fmt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -9,13 +11,15 @@ type DB struct {
 	Conn *sql.DB
 }
 
-func InitDB() (*DB, error){
+func InitDB() (*DB, error) {
 	db, err := sql.Open("sqlite3", "./database/pswd_cli_local.db")
 	if err != nil {
+		fmt.Printf("Error connecting to database\n")
 		return nil, err
 	}
 
 	if err := db.Ping(); err != nil {
+		fmt.Printf("Error pinging database connection object\n")
 		return nil, err
 	}
 
