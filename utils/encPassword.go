@@ -53,6 +53,7 @@ func DecryptPassword(encPassword string) (string, error) {
 	nonce, cipherText := data[:nonceSize], data[nonceSize:]
 	decPassword, err := aesGCM.Open(nil, nonce, cipherText, nil)
 	if err != nil {
+		fmt.Printf("Error decrypting password\n")
 		return "", err
 	}
 
