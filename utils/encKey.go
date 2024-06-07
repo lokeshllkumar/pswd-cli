@@ -6,9 +6,9 @@ import (
 )
 
 func readKey() ([]byte, error){
-	data, err := ioutil.ReadFile("utils/key.txt")
+	data, err := ioutil.ReadFile("./utils/key.txt")
 	if err != nil {
-		fmt.Printf("Error reading key from stored file: %v", err)
+		fmt.Printf("Error reading key from stored file: %v\n", err)
 		return []byte(""), err
 	}
 
