@@ -41,7 +41,7 @@ var ListCmd = &cobra.Command{
 				continue
 			}
 
-			fmt.Printf("Service:%s|\tUsername:%s|\tPassword:%s\n", record.Service, record.Username, decryptedPassword)
+			fmt.Printf("Service:%s |\tUsername:%s |\tPassword:%s\n", record.Service, record.Username, decryptedPassword)
 		}
 
 		db.CloseDB()
