@@ -2,6 +2,7 @@ package models
 
 import (
 	"encoding/json"
+	"fmt"
 	_ "fmt"
 	"time"
 
@@ -26,6 +27,7 @@ func (db *DB) GetPassword(service string, username string) (string, error) {
 	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords WHERE service = ? AND username = ?;`
 	rows, err := db.Conn.Query(getQuery, service, username)
 	if err != nil {
+		fmt.Printf("Error running SELECT query in database\n")
 		return "", err
 	}
 	defer rows.Close()
@@ -37,6 +39,7 @@ func (db *DB) GetPassword(service string, username string) (string, error) {
 		var creationTime string
 
 		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
+			fmt.Printf("Error reading data retrieved from database\n")
 			return "", err
 		}
 
@@ -54,6 +57,7 @@ func (db *DB) GetPassword(service string, username string) (string, error) {
 
 	jsonRes, err := json.Marshal(res)
 	if err != nil {
+		fmt.Printf("Error parsing JSON data\n")
 		return "", err
 	}
 
@@ -64,6 +68,7 @@ func (db *DB) GetPasswords(service string) (string, error) {
 	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords WHERE service = ?;`
 	rows, err := db.Conn.Query(getQuery, service)
 	if err != nil {
+		fmt.Printf("Error running SELECT query in database\n")
 		return "", err
 	}
 	defer rows.Close()
@@ -75,6 +80,7 @@ func (db *DB) GetPasswords(service string) (string, error) {
 		var creationTime string
 
 		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
+			fmt.Printf("Error reading data retrieved from database\n")
 			return "", err
 		}
 
@@ -92,6 +98,7 @@ func (db *DB) GetPasswords(service string) (string, error) {
 
 	jsonRes, err := json.Marshal(res)
 	if err != nil {
+		fmt.Printf("Error parsing JSON data\n")
 		return "", err
 	}
 
@@ -102,6 +109,7 @@ func (db *DB) ListPasswords() (string, error) {
 	getQuery := `SELECT id, service, username, password, creation_time FROM local_passwords;`
 	rows, err := db.Conn.Query(getQuery)
 	if err != nil {
+		fmt.Printf("Error running SELECT query in database\n")
 		return "", err
 	}
 	defer rows.Close()
@@ -112,6 +120,7 @@ func (db *DB) ListPasswords() (string, error) {
 		var creationTime string
 
 		if err := rows.Scan(&record.ID, &record.Service, &record.Username, &record.Password, &creationTime); err != nil {
+			fmt.Printf("Error reading data retrieved from database\n")
 			return "", err
 		}
 
