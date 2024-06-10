@@ -18,13 +18,13 @@ var AddCmd = &cobra.Command{
 
 		encryptedPassword, err := utils.EncryptPassword(password)
 		if err != nil {
-			fmt.Println("Error encrypting password")
+			fmt.Println("Error encrypting password", err)
 			return
 		}
 
 		db, err := models.InitDB()
 		if err != nil {
-			fmt.Println("Error, database connection failed")
+			fmt.Println("Error, database connection failed", err)
 			return
 		}
 
